@@ -1,2 +1,0 @@
-# PixelHub
-Social
