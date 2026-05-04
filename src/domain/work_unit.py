@@ -1,13 +1,15 @@
 from .db import Session
 class UnitOfWork():
     def __init__(self, Session):
-      self.Session= Session
+      self.session= Session
     def __enter__(self):
-      self.Session = Session()
+      self.session = Session()
+      return self
 
       return self
     def __exit__(self, exc_type, exc, tb):
         if exc is not None:
-          self.Session.rollback()
+          self.session.rollback()
+          self.session.commit()
         else:
-           self.Session.commit()
+           self.session.commit()
